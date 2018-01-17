@@ -2,8 +2,8 @@ package example
 
 import scala.concurrent.duration._
 import scala.concurrent.{Await, Future}
-
 import scala.concurrent.ExecutionContext.Implicits.global
+import scala.util.Random
 
 object AsyncDemo  extends  App {
   val start = System.currentTimeMillis()
@@ -23,17 +23,23 @@ object AsyncDemo  extends  App {
     info(s"Here's your ${dish.name}, sir!")
   }
 
-  val fsteak = Future{ cook("steak") }
-  val fpotatoes = Future{ cook("potatoes") }
+  import scala.async.Async._
 
-  val fs: Future[Unit] = for {
-    s <- fsteak
-    p <-fpotatoes
-  } yield {
-    serve(s + p)
+  def wantsRice() = Future { Thread.sleep(500L); Random.nextBoolean() }
+
+  val fs = async {
+    val fsteak = async { cook("steak") }
+    val fpotatoes = async { cook("potatoes") }
+
+    if (await(wantsRice())) {
+      val rice = async { cook("rice") }
+      serve( await(fsteak) + await(rice))
+
+    } else {
+      serve( await(fsteak) + await(fpotatoes))
+    }
   }
 
   Await.result(fs, 10.seconds)
-
 }
 
