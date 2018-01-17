@@ -23,13 +23,12 @@ object AsyncDemo  extends  App {
     info(s"Here's your ${dish.name}, sir!")
   }
 
+  val fsteak = Future{ cook("steak") }
+  val fpotatoes = Future{ cook("potatoes") }
+
   val fs: Future[Unit] = for {
-    s <- Future {      //: Future[Dish]
-      cook("steak")
-    }
-    p <- Future {
-      cook("potatoes")
-    }
+    s <- fsteak
+    p <-fpotatoes
   } yield {
     serve(s + p)
   }
