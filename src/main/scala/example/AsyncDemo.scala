@@ -1,5 +1,10 @@
 package example
 
+import scala.concurrent.duration._
+import scala.concurrent.{Await, Future}
+
+import scala.concurrent.ExecutionContext.Implicits.global
+
 object AsyncDemo  extends  App {
   val start = System.currentTimeMillis()
   def info(msg: String) = printf("%.2f: %s\n", (System.currentTimeMillis() - start) / 1000.0, msg)
@@ -18,9 +23,18 @@ object AsyncDemo  extends  App {
     info(s"Here's your ${dish.name}, sir!")
   }
 
-  val s = cook("steak")
-  val p = cook("potatoes")
-  serve(s + p)
+  val fs: Future[Unit] = for {
+    s <- Future {      //: Future[Dish]
+      cook("steak")
+    }
+    p <- Future {
+      cook("potatoes")
+    }
+  } yield {
+    serve(s + p)
+  }
+
+  Await.result(fs, 10.seconds)
 
 }
 
