@@ -26,7 +26,17 @@ object Demo {
    }
 }
 ```
-2) trait  
+
+2) Unit  
+The Unit type is used to define a function that doesn't return data. It is similiar to the void keyword in Java.
+
+```scala
+def main(args: Array[String]) : Unit = { 
+} 
+```
+The Unit literal is an empty pair of parentheses, ().
+
+3) trait  
 Traits are used to share interfaces and fields between classes. They are similar to Java 8's interfaces. Classes and objects can extend traits but traits cannot be instantiated and therefore have no parameters.   
 ```scala
 trait Equal {
