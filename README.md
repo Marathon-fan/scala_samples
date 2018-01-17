@@ -36,7 +36,20 @@ def main(args: Array[String]) : Unit = {
 ```
 The Unit literal is an empty pair of parentheses, ().
 
-3) trait  
+
+3) Equality of Objects  
+In Scala the == and != methods (or operators if you will, but in Scala they are actually methods) check for value equality as opposed to Java or C# where they check for reference equality. Both the == and the != methods are defined as final in the Any type. They both use the equals method which is also defined, but not as final, in Any. In other words, for the == and != methods to work as expected for our custom types we need to override the equals method to ensure that it compares the relevant values.
+
+For instance, let’s say that we have a Person class with a single field named name. Then two instances of that class with the same name should equal each other when the equals method or the == method is used, but as default they wont.
+```scala
+class Person(val name: String)
+
+var person1 = new Person("John")
+var person2 = new Person("John")
+person1 == person2 //Should be true but is false
+```
+
+4) trait  
 Traits are used to share interfaces and fields between classes. They are similar to Java 8's interfaces. Classes and objects can extend traits but traits cannot be instantiated and therefore have no parameters.   
 ```scala
 trait Equal {
