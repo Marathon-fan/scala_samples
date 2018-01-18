@@ -7,7 +7,9 @@ object MacWireDemo extends  App  {
 
   case class Field()
   case class Digger()
-  case class PotatoFarm(field: Field, digger: Digger)
+  case class PotatoFarm(field: Field, digger: Digger) {
+    println("New potato farm! Rejoice!") // now singleton
+  }
 
   case class CowPasture(potatoFarm: PotatoFarm)
   case class Meatery(cowPasture: CowPasture)
