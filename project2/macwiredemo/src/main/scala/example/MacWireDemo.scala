@@ -21,7 +21,7 @@ object MacWireDemo extends  App  {
   }
 
   lazy val field = wire[Field]
-  lazy val potatoFarm = wire[PotatoFarm]
+  def potatoFarm = wire[PotatoFarm] // not singleton any more
   lazy val digger =  wire[Digger]
 
   lazy val cowPasture = wire[CowPasture]
