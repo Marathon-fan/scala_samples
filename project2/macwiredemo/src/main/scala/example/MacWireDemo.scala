@@ -1,7 +1,9 @@
 package com.softwaremill.macwire
 
+import com.softwaremill.macwire._
+
 // dependency injection using macwire without framework
-object MacWireDemo extends  App {
+object MacWireDemo extends  App  {
 
   case class Field()
   case class Digger()
@@ -16,14 +18,14 @@ object MacWireDemo extends  App {
     }
   }
 
-  lazy val field = new Field()
-  lazy val potatoFarm = new PotatoFarm(field, digger)
-  lazy val digger = new Digger()
+  lazy val field = wire[Field]
+  lazy val potatoFarm = wire[PotatoFarm]
+  lazy val digger =  wire[Digger]
 
-  lazy val cowPasture = new CowPasture()
-  lazy val meatery = new Meatery(cowPasture)
+  lazy val cowPasture = wire[CowPasture]
+  lazy val meatery = wire[Meatery]
 
-  lazy val restaurant = new Restaurant(potatoFarm, meatery)
+  lazy val restaurant = wire[Restaurant]
   restaurant.orderSteakWithPotatoes()
 }
 
