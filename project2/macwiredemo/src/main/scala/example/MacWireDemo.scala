@@ -9,7 +9,7 @@ object MacWireDemo extends  App  {
   case class Digger()
   case class PotatoFarm(field: Field, digger: Digger)
 
-  case class CowPasture()
+  case class CowPasture(potatoFarm: PotatoFarm)
   case class Meatery(cowPasture: CowPasture)
 
   case class Restaurant(potatoFarm: PotatoFarm, meatery: Meatery) {
