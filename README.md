@@ -156,3 +156,28 @@ def calcType(calc: Calculator) = calc match {
 
 ### 7) lazy   
 
+The difference between them is, that a val is executed when it is defined whereas a lazy val is executed when it is accessed the first time.
+
+```scala  
+scala> val x = { println("x"); 15 }
+x
+x: Int = 15
+
+scala> lazy val y = { println("y"); 13 }
+y: Int = <lazy>
+
+scala> x
+res2: Int = 15
+
+scala> y
+y
+res3: Int = 13
+
+scala> y
+res4: Int = 13
+```
+
+
+## Reference  
+https://www.scala-lang.org/old/node/104.html  
+https://www.cis.upenn.edu/~matuszek/Concise%20Guides/Concise%20Scala.html  
