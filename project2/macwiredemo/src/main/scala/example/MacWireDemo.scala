@@ -20,14 +20,27 @@ object MacWireDemo extends  App  {
     }
   }
 
-  lazy val field = wire[Field]
-  def potatoFarm = wire[PotatoFarm] // not singleton any more
-  lazy val digger =  wire[Digger]
+  trait CropModule {
+    lazy val field = wire[Field]
+    def potatoFarm = wire[PotatoFarm] // not singleton any more
+    lazy val digger =  wire[Digger]
+  }
 
-  lazy val cowPasture = wire[CowPasture]
-  lazy val meatery = wire[Meatery]
+  trait LivestockModule {
+    lazy val cowPasture = wire[CowPasture]
+    lazy val meatery = wire[Meatery]
 
-  lazy val restaurant = wire[Restaurant]
-  restaurant.orderSteakWithPotatoes()
+    def potatoFarm: PotatoFarm
+  }
+
+  trait RestaurantModule {
+    lazy val restaurant = wire[Restaurant]
+
+    def potatoFarm: PotatoFarm
+    def meatery: Meatery
+  }
+
+  val app = new CropModule with LivestockModule with RestaurantModule
+  app.restaurant.orderSteakWithPotatoes()
 }
 
