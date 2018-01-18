@@ -16,14 +16,14 @@ object MacWireDemo extends  App {
     }
   }
 
-  val field = new Field()
-  val digger = new Digger()
-  val potatoFarm = new PotatoFarm(field, digger)
+  lazy val field = new Field()
+  lazy val potatoFarm = new PotatoFarm(field, digger)
+  lazy val digger = new Digger()
 
-  val cowPasture = new CowPasture()
-  val meatery = new Meatery(cowPasture)
+  lazy val cowPasture = new CowPasture()
+  lazy val meatery = new Meatery(cowPasture)
 
-  val restaurant = new Restaurant(potatoFarm, meatery)
+  lazy val restaurant = new Restaurant(potatoFarm, meatery)
   restaurant.orderSteakWithPotatoes()
 }
 
