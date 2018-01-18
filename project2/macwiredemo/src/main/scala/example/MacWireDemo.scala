@@ -33,11 +33,8 @@ object MacWireDemo extends  App  {
     def potatoFarm: PotatoFarm
   }
 
-  trait RestaurantModule {
+  trait RestaurantModule  extends LivestockModule with CropModule {
     lazy val restaurant = wire[Restaurant]
-
-    def potatoFarm: PotatoFarm
-    def meatery: Meatery
   }
 
   val app = new CropModule with LivestockModule with RestaurantModule
