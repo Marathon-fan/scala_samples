@@ -1,22 +1,32 @@
 # scala
 
-## 1 how to initialize a scala project  
-http://www.scala-sbt.org/0.13/docs/Hello.html
-
-
-## 2 how to run it  
+## 1 how to run these projects  
 1) $> cd project1/project2/project3  
 2) $> sbt  
 3) $> run  
 
-## 3 project 1  
+## 2 project 1-introduction  
 this project demonstrates how to use async(Futures and Scala Async)  
 
-## 4 project 2  
+## 3 project 2-introduction    
 this project demonstrates how to MacWire to make DI(dependency injection)  
 
+## 4 project 3-introduction    
+this project demonstrates how to use Spray api 
 
-## x scala basics  
+
+## 5 how to initialize a scala project  
+http://www.scala-sbt.org/0.13/docs/Hello.html
+
+$ sbt new sbt/scala-seed.g8  
+name [My Something Project]: hello  
+...  
+$ cd hello  
+$ sbt  
+...  
+> run  
+
+## 6 scala basics  
 
 ### 1) object  
 In Scala, we cannot have static members. Instead, Scala has singleton objects. A singleton is a class that can have only one instance, i.e., Object. You create singleton using the keyword object instead of class keyword.  
