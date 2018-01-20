@@ -9,28 +9,41 @@ object SprayDemo extends App with SimpleRoutingApp { //SimpleRoutingApp is produ
 
   // type Route = RequestContext => Unit
 
+  //
+  def secure(route: Route): Route = {
+    parameters("username", "password") {
+      (username, password) =>
+        if (username == "admin" && password == "1234") {
+        route
+        } else {
+          ctx => ctx.complete(401, "bad user!")
+        }
+    }
+  }
+
   startServer(interface = "localhost", port = 8080) {
     get {
 
       //  curl "http://localhost:8080/takeaway/hello"
-      path ("takeaway" / "hello") {
-          complete {
-            "Welcome to the potato & steak take-away!"
-          }
+      //  curl "http://localhost:8080/takeaway/hello?username=fakeuser&password=1235"
+      //  curl "http://localhost:8080/takeaway/hello?username=admin&password=1234"
+
+      secure {
+        path("takeaway" / "hello") {
+          ctx => ctx.complete("Welcome to the potato & steak take-away!") // use context
         }
       } ~
-
-    //  curl "http://localhost:8080/order/potatoes?mashed=false&number=10&special=baked"
-    path("order" / "potatoes") {
-        parameters("mashed".as[Boolean], "number".as[Int], "special"?) {   // special is an optional parameter
+      //  curl "http://localhost:8080/order/potatoes?mashed=false&number=10&special=baked"
+      path("order" / "potatoes") {
+        parameters("mashed".as[Boolean], "number".as[Int], "special" ?) { // special is an optional parameter
           (mashed, number, special) =>
             complete {
               s"You have orderd ${mashed} potatoes, ${number + 1} (one is free)" + s"Special wishes: ${special.getOrElse("none")}"
             }
-
         }
       }
 
+    }
   }
 
 }
