@@ -188,6 +188,22 @@ res4: Int = 13
 ```
 
 
+### 8) implicit   
+There are three categories of “implicits”;  
+Implicit parameters (aka implicit values) will be automatically passed values that have been marked as implicit  
+Implicit functions are defs that will be called automatically if the code wouldn’t otherwise compile  
+Implicit classes extend behaviour of existing classes you don’t otherwise control (akin to categories in Objective-C)  
+
+
+Implicit functions will be called automatically if the compiler thinks it’s a good idea to do so. What that means is that if your code doesn’t compile but would, if a call was made to an implicit function, Scala will call that function to make it compile. They’re typically used to create implicit conversion functions; single argument functions to automatically convert from one type to another.
+
+```scala
+import akka.actor.{Props, Actor, ActorSystem}
+
+implicit val actorSystem = ActorSystem()
+```
+
+
 ## Reference  
 https://www.scala-lang.org/old/node/104.html  
 https://www.cis.upenn.edu/~matuszek/Concise%20Guides/Concise%20Scala.html  
