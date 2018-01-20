@@ -5,13 +5,13 @@
 2) $> sbt  
 3) $> run  
 
-## 2 project 1-introduction  
+## 2 project 1_async(Futures and Scala Async)    
 this project demonstrates how to use async(Futures and Scala Async)  
 
-## 3 project 2-introduction    
+## 3 project2_use MacWire to make DI(dependency injection)      
 this project demonstrates how to use MacWire to make DI(dependency injection)  
 
-## 4 project 3-introduction    
+## 4 project3_use Spray api to make REST server      
 this project demonstrates how to use Spray api to make REST server
 
 ## 5 project 4_typical_examples  
