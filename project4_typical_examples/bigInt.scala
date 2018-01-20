@@ -2,7 +2,7 @@
 
 // aa
 /** Bigint's can be used seamlessly */
-object bigint extends App {
+object bigint {
 
   def factorial(n: BigInt): BigInt =
     if (n == 0) 1 else n * factorial(n-1)
