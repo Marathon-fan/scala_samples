@@ -25,13 +25,13 @@ this project gives answers to problems from FP_hackerRank
 ## 7 how to initialize a scala project  
 http://www.scala-sbt.org/0.13/docs/Hello.html
 
-$ sbt new sbt/scala-seed.g8  
+$> sbt new sbt/scala-seed.g8  
 name [My Something Project]: hello  
 ...  
-$ cd hello  
-$ sbt  
+$> cd hello  
+$> sbt  
 ...  
-> run  
+$> run  
 
 ## 8 scala basics  
 
