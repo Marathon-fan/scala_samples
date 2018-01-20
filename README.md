@@ -9,13 +9,20 @@
 this project demonstrates how to use async(Futures and Scala Async)  
 
 ## 3 project 2-introduction    
-this project demonstrates how to MacWire to make DI(dependency injection)  
+this project demonstrates how to use MacWire to make DI(dependency injection)  
 
 ## 4 project 3-introduction    
-this project demonstrates how to use Spray api 
+this project demonstrates how to use Spray api to make REST server
+
+## 5 project 4_typical_examples  
+this project gives typical examples of scala languages  
 
 
-## 5 how to initialize a scala project  
+## 6 project 5_scala_FP_hackerRank  
+this project gives answers to problems from FP_hackerRank  
+
+
+## 7 how to initialize a scala project  
 http://www.scala-sbt.org/0.13/docs/Hello.html
 
 $ sbt new sbt/scala-seed.g8  
@@ -26,7 +33,7 @@ $ sbt
 ...  
 > run  
 
-## 6 scala basics  
+## 8 scala basics  
 
 ### 1) object  
 In Scala, we cannot have static members. Instead, Scala has singleton objects. A singleton is a class that can have only one instance, i.e., Object. You create singleton using the keyword object instead of class keyword.  
@@ -203,6 +210,16 @@ import akka.actor.{Props, Actor, ActorSystem}
 implicit val actorSystem = ActorSystem()
 ```
 
+
+### 9) the yield keyword(buffer the for-loop result and return a collection)    
+
+For each iteration of your for loop, yield generates a value which will be remembered. It's like the for loop has a buffer you can’t see, and for each iteration of your for loop another item is added to that buffer. When your for loop finishes running, it will return this collection of all the yielded values. The type of the collection that is returned is the same type that you were iterating over, so a Map yields a Map, a List yields a List, and so on.  
+Also, note that the initial collection is not changed; the for/yield construct creates a new collection according to the algorithm you specify.  
+```scala
+val num = 5
+val arr = Array(1, 2, 3, 4, 5)
+for {e <- arr; _ <- 1 to num} yield e
+```
 
 ## Reference  
 https://www.scala-lang.org/old/node/104.html  
