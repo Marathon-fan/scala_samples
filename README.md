@@ -221,6 +221,44 @@ val arr = Array(1, 2, 3, 4, 5)
 for {e <- arr; _ <- 1 to num} yield e
 ```
 
+### 10) ::(cons operator)    
+:: (list cons operator. It creates a new list whose head is first argument and whose tail is contents of the second argument.)  
+the construction operation :: (pronounced cons): x :: xs gives a new list with the first element x, followed by the elements of xs (which is a list itself).  
+
+
+```scala
+//For example:
+
+
+list = num :: list
+
+val fruit = "apples" :: ("oranges" :: ("pears" :: Nil))
+val nums = 1 :: (2 :: (3 :: (4 :: Nil)))
+val empty = Nil
+```
+
+
+## Java trap  
+
+### 1  
+Scala is generally easy to learn when coming from Java, but here's a trap: 
+
+If you write: 
+
+  def square(x: int): int { return x * x } 
+
+You get: 
+
+  error: illegal start of declaration 
+  def square(x: int): int { return x * x } 
+
+with the error point at the `return'. This is very cryptic, even if it 
+makes perfect sense if you know what's going on. (What goes on, in fact, 
+is that the block in { ... } is parsed as a refinement of the type 
+`int'. Only declarations are allowed in refinements, and the 
+`return' is a statement, not a declaration). 
+
+
 ## Reference  
 https://www.scala-lang.org/old/node/104.html  
 https://www.cis.upenn.edu/~matuszek/Concise%20Guides/Concise%20Scala.html  
