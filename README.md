@@ -17,12 +17,24 @@ this project demonstrates how to use Spray api to make REST server
 ## 5 project 4_typical_examples  
 this project gives typical examples of scala languages  
 
-
 ## 6 project 5_scala_FP_hackerRank  
 this project gives answers to problems from FP_hackerRank  
 
+## 7 play_WebApp(sample)      
+1) create the play! project  
+2) creating the model 
+3) routing  
+4) creating the controllers  
+5) using forms  
+6) making the template  
+7) run the app  
 
-## 7 how to initialize a scala project  
+
+
+
+
+
+## 8 how to initialize a scala project  
 http://www.scala-sbt.org/0.13/docs/Hello.html
 
 $> sbt new sbt/scala-seed.g8  
@@ -33,7 +45,7 @@ $> sbt
 ...  
 $> run  
 
-## 8 scala basics  
+## 9 scala basics  
 
 ### 1) object  
 In Scala, we cannot have static members. Instead, Scala has singleton objects. A singleton is a class that can have only one instance, i.e., Object. You create singleton using the keyword object instead of class keyword.  
@@ -262,3 +274,14 @@ is that the block in { ... } is parsed as a refinement of the type
 ## Reference  
 https://www.scala-lang.org/old/node/104.html  
 https://www.cis.upenn.edu/~matuszek/Concise%20Guides/Concise%20Scala.html  
+
+
+## play_framework    
+web framework: play  
+Persistence API: JPA  
+ORM: Play! with EBean  
+Templating Engine: Play!  
+reutilize views: Play!  
+Server Container: Play!  
+management of dependencies: SBT  
+
