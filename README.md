@@ -20,25 +20,11 @@ this project gives typical examples of scala languages
 ## 6 project 5_scala_FP_hackerRank  
 this project gives answers to problems from FP_hackerRank  
 
-## 7 play_WebApp(sample)      
-
-1) download start project template from https://example.lightbend.com/v1/download/play-scala-starter-example  
-2) unzip the file and cd the folder  
-3) $> ./sbt run  
-4) navigate to http://localhost:9000/ and you will see the page  
-
-
-1) create the play! project  
-2) creating the model 
-3) routing  
-4) creating the controllers  
-5) using forms  
-6) making the template  
-7) run the app  
-
-
-
-
+## 7 project play_WebApp(sample)      
+how to run it  
+1) cd the project folder  
+2) $> ./sbt run  
+3) navigate to http://localhost:9000/ and you will see the page  
 
 
 ## 8 how to initialize a scala project  
@@ -278,17 +264,71 @@ is that the block in { ... } is parsed as a refinement of the type
 `return' is a statement, not a declaration). 
 
 
-## Reference  
-https://www.scala-lang.org/old/node/104.html  
-https://www.cis.upenn.edu/~matuszek/Concise%20Guides/Concise%20Scala.html  
-
-
 ## play_framework    
-web framework: play  
+
+
+play project folders  
+1) app
+  controllers, views  
+2) conf  
+  application.conf, routes(endponts and their parameters)    
+3) project  
+  build.properties(after play 2.2, in root folder use build.sbt), plugins.sbt  
+4) public   
+  static assets such as images, javascripts and stylesheets  
+5) test  
+  unit tests or acceptance tests   
+
+how to create a play 2+ project?  
+1) download start project template from https://example.lightbend.com/v1/download/play-scala-starter-example  
+or $> sbt new playframework/play-scala-projectName.g8  (here, sbt should at least be 0.13.13 or higher)  
+2) $> ./sbt run  
+3) navigate to http://localhost:9000/ and you will see the page    
+
+structure
+1) the router  
+2) controllers, actions & results  
+3) views  
+4) data access  
+5) the global object(ApplicationSpec.scala, IntegrationSpec.scala..)    
+
+play 2+  
+1) new Scala based codebase  
+2) Stateless by default  
+3) asynchronous by default  
+
+play philosophy  
+1) scaling horizontally can be cheaper and more flexible  
+2) self hosted, self managed applications can be easily deployed  
+3) statelessness allows applications to scale horizontally easily  
+4) operations need to be non-blocking to support high concurrency  
+  (1) Threads  
+  (2) file System IO  
+  (3) database connections  
+5) holds no opinion on data access and persistence  
+
+play technologies  
+1) Play! Executable   
+  (1) giter8(play-scala-seed.g8 ) for project templating  
+  (2) sbt(simple build tool) for build and Dependency management  
+2) play! framework  
+  (1) Netty(web server) - play uses netty  
+  (2) Akka(concurrency/actor)  - play uses akka  
+  (3) Logback(Logging) - play uses logback for logging  
+  (4) web technologies(coffeeScript, LESS)  
+  (5) HTML5(websockets, server sent events)   
+  (6) Data Access(JDBC, JPA, Anorm, H2 Database)  
+  (7) Testing(Specs2, Selenium)// you can use these for testing or not use them    
+
+<!-- web framework: play  
 Persistence API: JPA  
 ORM: Play! with EBean  
 Templating Engine: Play!  
 reutilize views: Play!  
 Server Container: Play!  
-management of dependencies: SBT  
+management of dependencies: SBT   -->
+
+## Reference  
+https://www.scala-lang.org/old/node/104.html  
+https://www.cis.upenn.edu/~matuszek/Concise%20Guides/Concise%20Scala.html  
 
