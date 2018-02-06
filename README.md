@@ -21,6 +21,13 @@ this project gives typical examples of scala languages
 this project gives answers to problems from FP_hackerRank  
 
 ## 7 play_WebApp(sample)      
+
+1) download start project template from https://example.lightbend.com/v1/download/play-scala-starter-example  
+2) unzip the file and cd the folder  
+3) $> ./sbt run  
+4) navigate to http://localhost:9000/ and you will see the page  
+
+
 1) create the play! project  
 2) creating the model 
 3) routing  
