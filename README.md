@@ -343,7 +343,7 @@ addSbtPlugin("com.typesafe.sbteclipse" % "sbteclipse-plugin" % "5.2.4")
 
 In sbt use the command eclipse to create Eclipse project files  
 
-> eclipse  
+$> eclipse  
 
 then we can use eclipse to import the project  
 
