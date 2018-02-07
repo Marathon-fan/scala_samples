@@ -328,6 +328,27 @@ reutilize views: Play!
 Server Container: Play!  
 management of dependencies: SBT   -->
 
+## scala tools  
+### twirl  
+Twirl is the Play 2 templating language.  
+
+### Casbah  
+Casbah is a Scala toolkit for MongoDB.
+
+### add eclipse plugin  
+For the latest version:
+add the following line to projectFolder/project/plugins.sbt
+
+addSbtPlugin("com.typesafe.sbteclipse" % "sbteclipse-plugin" % "5.2.4")  
+
+In sbt use the command eclipse to create Eclipse project files  
+
+> eclipse  
+
+then we can use eclipse to import the project  
+
+
+
 ## Reference  
 https://www.scala-lang.org/old/node/104.html  
 https://www.cis.upenn.edu/~matuszek/Concise%20Guides/Concise%20Scala.html  
