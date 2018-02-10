@@ -242,6 +242,13 @@ val nums = 1 :: (2 :: (3 :: (4 :: Nil)))
 val empty = Nil
 ```
 
+### scala get type
+```scala
+    println(someVar.getClass)
+    println(someVal.getClass)
+```
+
+
 
 ## Java trap  
 
