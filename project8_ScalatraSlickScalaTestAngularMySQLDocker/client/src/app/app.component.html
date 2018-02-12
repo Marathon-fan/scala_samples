@@ -1,0 +1,40 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h1>
+    Welcome!
+  </h1>
+</div>
+<div class="container" *ngFor = "let product of products">
+  <app-product-detail [product]= "product" ></app-product-detail>
+</div>
+<br>
+<br>
+<form (ngSubmit)="onFormSubmit_addPost(postForm)"    #postForm="ngForm">
+<div class="container-fluid">
+  <div class="row">
+    <label class="col-md-1" >userId</label>
+    <input id="input_userId" [(ngModel)]="input_userId" [ngModelOptions]="{standalone: true}" class="col-md-4" type="text" placeholder="userId">
+  </div>
+  <div class="row">
+    <label class="col-md-1" >postText</label>
+    <input id="input_text"  [(ngModel)]="input_text"   [ngModelOptions]="{standalone: true}" class="col-xs-12 col-md-8" type="text" placeholder="please input post text">
+  </div>
+  <div class="row">
+    <label class="col-md-1" ></label>
+    <button onclick="">add post</button>
+  </div>
+</div>
+</form>
+<br>
+<form (ngSubmit)="onFormSubmit_deletePost(deleteForm)"    #deleteForm="ngForm">
+  <div class="container-fluid">
+    <div class="row">
+      <label class="col-md-1" >postId</label>
+      <input id="input_delete_postId" [(ngModel)]="input_delete_postId" [ngModelOptions]="{standalone: true}" class="col-md-4" type="text" placeholder="postId">
+    </div>
+    <div class="row">
+      <label class="col-md-1" ></label>
+      <button onclick="">delete post</button>
+    </div>
+  </div>
+</form>
