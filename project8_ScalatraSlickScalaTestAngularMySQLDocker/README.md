@@ -7,7 +7,7 @@ use sql_for_scalatra.txt to install mysql, create db, table, and insert initial 
 ### step2 scalatraBackend  
 enter scalatraBackend folder and use sbt run backend   
 ```
-$ cd 
+$ cd scalatraBackend  
 $ chmod +x sbt
 $ ./sbt ~test 
 $ ./sbt ~jetty:start
@@ -16,6 +16,7 @@ $ ./sbt ~jetty:start
 ### step3 client  
 enter client folder and use npm to run the front end  
 ```
+$ cd client  
 $ npm install  
 $ npm start
 ```

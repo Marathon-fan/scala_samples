@@ -1,15 +1,9 @@
 
 
-
--- mySQL script
-
--- create database
 create database scalatra_test;
 
---select database
 use scalatra_test;
 
--- create tables
 
 CREATE TABLE User(
 userId INT NOT NULL AUTO_INCREMENT,  
@@ -27,11 +21,8 @@ PRIMARY KEY ( postId )
 );
 
 
--- show tables
 show tables;
 
-—————————————————————————————————————————————————————————————————
---insert test data for table User
 INSERT INTO User (userId, userName, password)
 VALUES (DEFAULT, 'Jim', '123');   
 
@@ -41,7 +32,6 @@ VALUES (DEFAULT, 'Tom', '123');
 select * from scalatra_test.User;
 
 
---insert test data for table Post
 INSERT INTO Post (postId, text,  createdAt, userId)
 VALUES (DEFAULT, 'Jim first post', NOW(), 1);
 
