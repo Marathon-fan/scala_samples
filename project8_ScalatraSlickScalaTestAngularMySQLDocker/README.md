@@ -27,6 +27,7 @@ you can add a post
 you can delete a post    
 the user management is the backend functionality and is not exposed yet(but you can use postman to test it)  
 
+
 ## restful design  
 1) add a  user  
 post localhost:8080/db/api/user/?username=xxx&&password=xxx    
