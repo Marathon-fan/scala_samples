@@ -27,3 +27,16 @@ you can add a post
 you can delete a post    
 the user management is the backend functionality and is not exposed yet(but you can use postman to test it)  
 
+## restful design  
+1) add a  user  
+post localhost:8080/db/api/user/?username=xxx&&password=xxx    
+2) delete a user    
+delete localhost:8080/db/api/user/?userId=xx  
+3) get all users  
+get localhost:8080/db/api/users  
+4) add a post   
+post localhost:8080/db/api/post/?text=xxx&&userId=xxxxx  
+5) delete a post  
+post localhost:8080/db/api/post_delete/?postId=xx  // use post to simulate post method(to delete a post)  as some browsers don't support DELETE method  
+6) get all posts  
+get localhost:8080/db/api/posts  
