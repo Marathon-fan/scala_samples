@@ -20,7 +20,7 @@ libraryDependencies ++= Seq(
   "com.h2database"          %  "h2"                % "1.4.196",
   "com.mchange"             %  "c3p0"              % "0.9.5.2",
   "ch.qos.logback"          %  "logback-classic"   % "1.2.3"            % "provided",
-  "org.eclipse.jetty"       %  "jetty-webapp"      % "9.4.7.v20170914"  % "provided",
+  "org.eclipse.jetty"       %  "jetty-webapp"      % "9.2.15.v20160210" % "container;compile",
   "javax.servlet"           %  "javax.servlet-api" % "3.1.0"            % "provided",
   "com.typesafe.play"       %% "play-json"         % "2.6.7",
   "org.apache.httpcomponents" % "httpclient"       % "4.5.5",
@@ -29,5 +29,5 @@ libraryDependencies ++= Seq(
 
 
 enablePlugins(ScalatraPlugin)
-
+enablePlugins(JavaAppPackaging)
 

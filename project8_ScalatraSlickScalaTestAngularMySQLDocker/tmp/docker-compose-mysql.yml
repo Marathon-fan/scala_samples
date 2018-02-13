@@ -8,14 +8,6 @@ services:
       MYSQL_ROOT_PASSWORD: root
     volumes:
       - ./db-dump:/docker-entrypoint-initdb.d
-  dockerapp:
-     build: .
-     ports: 
-      - "8080:8080"
-      - "4200:4200"
-     tty: true
-     depends_on:
-      - mysql
 
 
 

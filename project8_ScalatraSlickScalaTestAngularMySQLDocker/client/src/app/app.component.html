@@ -4,37 +4,59 @@
     Welcome!
   </h1>
 </div>
+<!--<div class="container" *ngFor = "let product of products">-->
 <div class="container" *ngFor = "let product of products">
   <app-product-detail [product]= "product" ></app-product-detail>
 </div>
 <br>
 <br>
-<form (ngSubmit)="onFormSubmit_addPost(postForm)"    #postForm="ngForm">
-<div class="container-fluid">
-  <div class="row">
-    <label class="col-md-1" >userId</label>
-    <input id="input_userId" [(ngModel)]="input_userId" [ngModelOptions]="{standalone: true}" class="col-md-4" type="text" placeholder="userId">
+<form (ngSubmit)="onFormSubmit_addPost(postForm)"  #postForm="ngForm">
+<div>
+ <!--<div class="container-fluid">-->
+<!--<div class="row">-->
+  <div>
+    <!--<label class="col-md-1" >userId</label>-->
+    <label>userId</label>
+    <!--<input id="input_userId" [(ngModel)]="input_userId" [ngModelOptions]="{standalone: true}" class="col-md-4" type="text" placeholder="userId">-->
+    <input id="input_userId" [(ngModel)]="input_userId" [ngModelOptions]="{standalone: true}"  type="text" placeholder="userId">
   </div>
-  <div class="row">
-    <label class="col-md-1" >postText</label>
-    <input id="input_text"  [(ngModel)]="input_text"   [ngModelOptions]="{standalone: true}" class="col-xs-12 col-md-8" type="text" placeholder="please input post text">
+  <!--<div class="row">-->
+  <div>
+    <!--<label class="col-md-1" >postText</label>-->
+    <label>postText</label>
+    <!--<input id="input_text"  [(ngModel)]="input_text"   [ngModelOptions]="{standalone: true}" class="col-xs-12 col-md-8" type="text" placeholder="please input post text">-->
+    <input id="input_text"  [(ngModel)]="input_text"   [ngModelOptions]="{standalone: true}" type="text" placeholder="please input post text">
   </div>
+  <!--<div class="row">-->
+    <!--<label class="col-md-1" ></label>-->
   <div class="row">
-    <label class="col-md-1" ></label>
+    <label></label>
     <button onclick="">add post</button>
   </div>
 </div>
 </form>
 <br>
-<form (ngSubmit)="onFormSubmit_deletePost(deleteForm)"    #deleteForm="ngForm">
-  <div class="container-fluid">
-    <div class="row">
-      <label class="col-md-1" >postId</label>
-      <input id="input_delete_postId" [(ngModel)]="input_delete_postId" [ngModelOptions]="{standalone: true}" class="col-md-4" type="text" placeholder="postId">
+<form (ngSubmit)="onFormSubmit_deletePost(deleteForm)"   #deleteForm="ngForm">
+  <div>
+    <div>
+      <label >postId</label>
+      <input id="input_delete_postId" [(ngModel)]="input_delete_postId" [ngModelOptions]="{standalone: true}" type="text" placeholder="postId">
     </div>
-    <div class="row">
-      <label class="col-md-1" ></label>
-      <button onclick="">delete post</button>
+    <div>
+      <label></label>
+      <button onclick="onFormSubmit_deletePost()">delete post</button>
     </div>
   </div>
 </form>
+<!--<form (ngSubmit)="onFormSubmit_deletePost(deleteForm)"    #deleteForm="ngForm">-->
+  <!--<div class="container-fluid">-->
+    <!--<div class="row">-->
+      <!--<label class="col-md-1" >postId</label>-->
+      <!--<input id="input_delete_postId" [(ngModel)]="input_delete_postId" [ngModelOptions]="{standalone: true}" class="col-md-4" type="text" placeholder="postId">-->
+    <!--</div>-->
+    <!--<div class="row">-->
+      <!--<label class="col-md-1" ></label>-->
+      <!--<button onclick="">delete post</button>-->
+    <!--</div>-->
+  <!--</div>-->
+<!--</form>-->

@@ -86,7 +86,9 @@ trait SlickRoutes extends ScalatraBase with FutureSupport {
 
   // Create a database connection
   val driver: JdbcProfile = MySQLDriver
-  val db = Database.forURL("jdbc:mysql://localhost:3306/scalatra_test", "root", "root")
+  val db = Database.forURL("jdbc:mysql://mysql:3306/scalatra_test", "root", "root")
+  //val db = Database.forURL("jdbc:mysql://localhost:3306/scalatra_test", "root", "root")
+
   db.createSession()
 
   // code for testing the db   

@@ -1,0 +1,14 @@
+version: '3'
+services:
+  dockerapp:
+     build: .
+     ports: 
+      - "4200:4200"
+      - "8080:8080"
+     tty: true
+     stdin_open: true
+
+
+
+
+

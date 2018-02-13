@@ -11,6 +11,7 @@ $ cd scalatraBackend
 $ chmod +x sbt
 $ ./sbt ~test 
 $ ./sbt ~jetty:start
+$ ./sbt clean assembly
 ```
 
 ### step3 client  
