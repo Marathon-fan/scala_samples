@@ -9,6 +9,7 @@ services:
     volumes:
       - ./db-dump:/docker-entrypoint-initdb.d
   dockerapp:
+     image: marathonfan/scalatrabackend
      build: .
      ports: 
       - "8080:8080"
