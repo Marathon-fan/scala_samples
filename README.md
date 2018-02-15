@@ -1,33 +1,53 @@
 # scala
 
-## 1 how to run these projects  
-1) $> cd project1/project2/project3  
+
+## 1 scala projects
+### project1_async(Futures and Scala Async)    
+this project demonstrates how to use async(Futures and Scala Async)  
+```
+1) $> cd project1
 2) $> sbt  
 3) $> run  
 
-## 2 project 1_async(Futures and Scala Async)    
-this project demonstrates how to use async(Futures and Scala Async)  
-
-## 3 project2_use MacWire to make DI(dependency injection)      
+```
+### project2_use MacWire to make DI(dependency injection)      
 this project demonstrates how to use MacWire to make DI(dependency injection)  
+```
+1) $> cd project2
+2) $> sbt  
+3) $> run  
 
-## 4 project3_use Spray api to make REST server      
+```
+### project3_use Spray api to make REST server      
 this project demonstrates how to use Spray api to make REST server
+```
+1) $> cd project3
+2) $> sbt  
+3) $> run  
+```
 
-## 5 project 4_typical_examples  
+### project4_typical_examples  
 this project gives typical examples of scala languages  
 
-## 6 project 5_scala_FP_hackerRank  
+### project5_scala_FP_hackerRank  
 this project gives answers to problems from FP_hackerRank  
 
-## 7 project play_WebApp(sample)      
+### project7_play_WebApp(sample)      
 how to run it  
 1) cd the project folder  
 2) $> ./sbt run  
 3) navigate to http://localhost:9000/ and you will see the page  
 
+### project8_ScalatraSlickScalaTestAngularMySQLDocker  
+use Scalatra(scala), Slick(scala), ScalaTest(sclala), Angular(Angular4, typescript), MySQL, and Docker(Dockerfile, dockercompose) to build a fullstack project with CRUD functionality for users and posts.
 
-## 8 how to initialize a scala project  
+### project9_reactiveKafkaScalaExample  
+use Akka stream, kafka and scala together  
+
+
+## 2 scala basics  
+
+### how to initialize a scala project  
 http://www.scala-sbt.org/0.13/docs/Hello.html
 
 $> sbt new sbt/scala-seed.g8  
@@ -38,7 +58,6 @@ $> sbt
 ...  
 $> run  
 
-## 9 scala basics  
 
 ### 1) object  
 In Scala, we cannot have static members. Instead, Scala has singleton objects. A singleton is a class that can have only one instance, i.e., Object. You create singleton using the keyword object instead of class keyword.  
@@ -250,26 +269,6 @@ val empty = Nil
 
 
 
-## Java trap  
-
-### 1  
-Scala is generally easy to learn when coming from Java, but here's a trap: 
-
-If you write: 
-
-  def square(x: int): int { return x * x } 
-
-You get: 
-
-  error: illegal start of declaration 
-  def square(x: int): int { return x * x } 
-
-with the error point at the `return'. This is very cryptic, even if it 
-makes perfect sense if you know what's going on. (What goes on, in fact, 
-is that the block in { ... } is parsed as a refinement of the type 
-`int'. Only declarations are allowed in refinements, and the 
-`return' is a statement, not a declaration). 
-
 
 ## play_framework    
 
@@ -353,6 +352,55 @@ In sbt use the command eclipse to create Eclipse project files
 $> eclipse  
 
 then we can use eclipse to import the project  
+
+## comparsion  
+### stream processing vs   
+To me a stream processing system:
+```
+Computes a function of one data element, or a smallish window of recent data
+Computes something relatively simple
+Needs to complete each computation in near-real-time — probably seconds at most
+Computations are generally independent
+Asynchronous – source of data doesn’t interact with the stream processing directly, like by waiting for an answer
+```
+
+Stream processing is key if you want analytics results in real time. By building data streams, you can feed data into analytics tools as soon as it is generated and get near-instant analytics results using platforms like Spark Streaming.
+
+Stream processing is useful for tasks like fraud detection. If you stream-process transaction data, you can detect anomalies that signal fraud in real time, then stop fraudulent transactions before they are completed.
+
+A batch processing system to me is just the general case, rather than a special type of processing, but I suppose you could say that a batch processing system:
+```
+Has access to all data
+Might compute something big and complex
+Is generally more concerned with throughput than latency of individual components of the computation
+Has latency measured in minutes or more
+```
+
+Batch processing works well in situations where you don’t need real-time analytics results, and when it is more important to process large volumes of information than it is to get fast analytics results (although data streams can involve “big” data, too – batch processing is not a strict requirement for working with large amounts of data).
+
+
+
+## Java trap  
+
+### 1  
+Scala is generally easy to learn when coming from Java, but here's a trap: 
+
+If you write: 
+
+  def square(x: int): int { return x * x } 
+
+You get: 
+
+  error: illegal start of declaration 
+  def square(x: int): int { return x * x } 
+
+with the error point at the `return'. This is very cryptic, even if it 
+makes perfect sense if you know what's going on. (What goes on, in fact, 
+is that the block in { ... } is parsed as a refinement of the type 
+`int'. Only declarations are allowed in refinements, and the 
+`return' is a statement, not a declaration). 
+
+
 
 
 
