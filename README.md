@@ -90,11 +90,19 @@ In Scala the == and != methods (or operators if you will, but in Scala they are 
 
 For instance, let’s say that we have a Person class with a single field named name. Then two instances of that class with the same name should equal each other when the equals method or the == method is used, but as default they wont.
 ```scala
-class Person(val name: String)
+scala> class Person(val name:String)
+defined class Person
 
-var person1 = new Person("John")
-var person2 = new Person("John")
-person1 == person2 //Should be true but is false
+scala> var person1 = new Person("John")
+person1: Person = Person@4976085
+
+scala> var person2 = new Person("John")
+person2: Person = Person@4aa2877c
+
+scala> 
+
+scala> person1 == person2
+res0: Boolean = false //Should be true but is false as we need to override the == method 
 ```
 
 ### 4) trait  
@@ -471,9 +479,11 @@ res3: Option[Double] = Some(3.142857142857143)
 ```
 
 monadic
-In logic and mathematics, a predicate, a relation or a function having an arity of one is called monadic. 
+ n. An atom or a radical with a valence of 1.  
+In logic and mathematics, a predicate, a relation or a function having an arity of one is called monadic.  
+valence noun [ C ] /ˈveɪ·ləns/​ chemistry the ability of an atom to combine with other atoms, measured by the number of electrons it will lose, add, or share  
 
-In logic, mathematics, and computer science, the arity /ˈærɪti/ ( listen) of a function or operation is the number of arguments or operands that the function takes. 
+In logic, mathematics, and computer science, the arity /ˈærɪti/ ( listen) of a function or operation is the number of arguments or operands that the function takes.  
 
 //----
 Unit       Unit is basically like void in Java
