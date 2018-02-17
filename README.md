@@ -273,6 +273,105 @@ val immutable
 scala encourages the use of immutable variables to drive side-effort free code  
 immutable storage units also help keeep code safe for concurrent/distributed applications  
 
+### scala type inference  
+variable types can often be ommitted  
+function return trypes can often be ommitted  
+polymorphic method calls and generic class instantiations can often be omitted  
+```scala
+scala> var radius=10.0
+radius: Double = 10.0
+
+scala> var radius2 = 10
+radius2: Int = 10
+
+scala> var radius:Double = 10
+radius: Double = 10.0
+
+scala> var radius:Int = 10.0
+<console>:11: error: type mismatch;
+ found   : Double(10.0)
+ required: Int
+       var radius:Int = 10.0
+
+
+scala> var radius:Double="10.0"
+<console>:11: error: type mismatch;
+ found   : String("10.0")
+ required: Double
+       var radius:Double="10.0"
+
+````
+
+statically typed languages: Java, C, C++  
+
+Scala is statically typed, but it has an elaborate type inference system to guess types. so Scala code often looks more like Python code rather than like Java code
+
+
+### String Operations
+String interpolation using s""  
+printf notation using f""  
+```scala
+
+
+scala> val greeting ="hello"
+greeting: String = hello
+
+scala> greeting + name
+res0: String = helloVitthal
+
+scala> greeting + "\n" + name
+res1: String =
+hello
+Vitthal
+
+// you can create multi-line strings using triple quotes
+
+scala> val complicatedGreeting = """You are amazing,
+     | incredible,
+     | YUGE
+     | and ever so gracious
+     | """
+complicatedGreeting: String =
+"You are amazing,
+incredible,
+YUGE
+and ever so gracious
+"
+
+scala> val PI = "Pi"
+PI: String = Pi
+
+scala> val PI2 = "Pi"
+PI2: String = Pi
+""
+scala> PI == PI2""
+res2: Boolean = true
+
+//string interpolcation using s""
+scala> s"$greeting, $name, How are you today?"
+res3: String = hello, Vitthal, How are you today?
+
+
+scala> s"""$greeting
+     | change a line $name
+     | """
+res5: String =
+"hello
+change a line Vitthal
+"
+
+//you can create formula using {}
+scala> s"${greeting*5}, $name, how are you today?"
+res6: String = hellohellohellohellohello, Vitthal, how are you today?
+
+
+```
+
+1 create multi-line strings using triple quotes  
+2 string interpolcation using s""(preface the string with s, then the string can contain variables, delimited by $)
+3 you can create formula using {}
+
+Unlike in Java, it  is safe to compare strings using ==
 
 
 
