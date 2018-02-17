@@ -487,6 +487,102 @@ scala> def printAny(x:Any) {println(x)}
 printAny: (x: Any)Unit
 ```
 
+### Type Operations  
+asInstanceOf  
+isInstanceOf  
+to<Type>  
+getClass  
+
+
+//----
+asInstanceOf // a kind of cast
+
+
+```scala
+scala> 123.asInstanceOf[Long]
+res0: Long = 123
+
+scala> 123.24.asInstanceOf[Long]
+res3: Long = 123
+
+scala> "123.24".asInstanceOf[Long]
+java.lang.ClassCastException: java.lang.String cannot be cast to java.lang.Long
+  at scala.runtime.BoxesRunTime.unboxToLong(BoxesRunTime.java:105)
+  ... 28 elided
+
+
+```
+
+
+//----
+to<Type>  
+```scala
+scala> 123.24.toLong
+res1: Long = 123
+
+scala> "123".toLong
+res2: Long = 123
+
+scala> "abc".toLong
+java.lang.NumberFormatException: For input string: "abc"
+  at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+  at java.lang.Long.parseLong(Long.java:589)
+  at java.lang.Long.parseLong(Long.java:631)
+  at scala.collection.immutable.StringLike.toLong(StringLike.scala:306)
+  at scala.collection.immutable.StringLike.toLong$(StringLike.scala:306)
+  at scala.collection.immutable.StringOps.toLong(StringOps.scala:29)
+  ... 28 elided
+
+```
+
+//----
+isInstanceOf  
+
+```scala
+scala> 123.isInstanceOf[Long]
+res4: Boolean = false
+
+scala> 123.toLong.isInstanceOf[Long]
+res5: Boolean = true
+
+scala> 123.isInstanceOf[Any]
+res6: Boolean = true
+
+scala> "123".isInstanceOf[AnyRef]
+res7: Boolean = true
+```
+
+scala> null.isInstanceOf[Null]
+<console>:12: error: type Null cannot be used in a type pattern or isInstanceOf test
+       null.isInstanceOf[Null]
+                        ^
+
+scala> 123.isInstanceOf[AnyVal]
+<console>:12: error: type AnyVal cannot be used in a type pattern or isInstanceOf test
+       123.isInstanceOf[AnyVal]
+                       ^
+
+
+
+
+//----
+getClass
+
+
+
+```scala
+
+scala> "123".getClass
+res10: Class[_ <: String] = class java.lang.String
+
+scala> List(12, 3).getClass
+res12: Class[_ <: List[Int]] = class scala.collection.immutable.$colon$colon
+
+
+
+```
+
+
 
 
 
