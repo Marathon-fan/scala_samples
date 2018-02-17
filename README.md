@@ -371,7 +371,122 @@ res6: String = hellohellohellohellohello, Vitthal, how are you today?
 2 string interpolcation using s""(preface the string with s, then the string can contain variables, delimited by $)
 3 you can create formula using {}
 
-Unlike in Java, it  is safe to compare strings using ==
+Unlike in Java, it  is safe to compare strings using == in scala
+
+```scala
+scala> val PI = 3.14159
+PI: Double = 3.14159
+
+scala> f"PI evaluates to $PI%.2f"
+res7: String = PI evaluates to 3.14
+
+
+```
+
+### A unified type system  
+In Scala, all values are instances of a class(no exceptions)
+But, since Scala runs on the JVM, the distinction between value and reference types must still exist somehow
+
+Any  
+
+AnyVal    (Char, Boolean, Int, Double)    
+
+AnyRef    (Collections, Classes, Strings)  
+
+Nothing subtypes AnyVal and AnyRef  
+
+Null only subtypes AnyRef  
+
+### Emptiness in Scala  
+null Null Nothing Nil None Unit  
+
+//----
+null      basically, the same as null in Java
+          reference types can be null, but value types can not
+```scala
+scala> val z:Int = null
+<console>:11: error: an expression of type Null is ineligible for implicit conversion
+       val z:Int = null
+```
+
+//----
+Null       Null is a trait(i.e. a type) not a value  
+           Null is the type of null  
+
+//----
+Nothing    Nothing is a trait(i.e. a type) not a value  
+           Nothing can never be instantiated  
+           Nothing 'extends everything'(thus, Nothing is a subtype of both AnyVal and AnyRef)    
+
+```scala
+scala> val emptyList = List()
+emptyList: List[Nothing] = List()
+
+```
+
+//----
+Nil        Nil is a special value associated with an empty List  
+           Nil is a singleton instance of List [Nothing]  
+
+```scala
+scala> val someList = List(1,2,3,4)
+someList: List[Int] = List(1, 2, 3, 4)
+
+scala> var listIter = someList
+listInter: List[Int] = List(1, 2, 3, 4)
+
+scala>  while (listIter != Nil) {
+     |      | println(listIter.head);
+     |      | listIter = listIter.tail
+     |      | }
+1
+2
+3
+4
+```
+
+Lists are internally represented as linked lists, and use this special value(Nil) to signify the end of the list  
+
+//----
+None is a special value associated with an Option  
+Option is a (monadic) collection used to capture presence or absence of a value  
+
+
+```scala
+
+scala> def fraction(number:Double, denom:Double): Option[Double]
+     | = {
+     | if (denom == 0) None
+     | else Option(number / denom)
+     | }
+fraction: (number: Double, denom: Double)Option[Double]
+
+scala> fraction(100, 0)
+res2: Option[Double] = None
+
+scala> fraction(22, 7)
+res3: Option[Double] = Some(3.142857142857143)
+
+
+```
+
+monadic
+In logic and mathematics, a predicate, a relation or a function having an arity of one is called monadic. 
+
+In logic, mathematics, and computer science, the arity /ˈærɪti/ ( listen) of a function or operation is the number of arguments or operands that the function takes. 
+
+//----
+Unit       Unit is basically like void in Java
+           Unit is the return type of a function that returns nothing, for instance  
+
+
+
+
+```scala
+scala> def printAny(x:Any) {println(x)}
+printAny: (x: Any)Unit
+```
+
 
 
 
