@@ -268,6 +268,12 @@ val empty = Nil
 ```
 
 
+### var or val  
+val immutable    
+scala encourages the use of immutable variables to drive side-effort free code  
+immutable storage units also help keeep code safe for concurrent/distributed applications  
+
+
 
 
 ## play_framework    
