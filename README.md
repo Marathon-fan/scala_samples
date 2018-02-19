@@ -720,6 +720,62 @@ Converting call-by-name parameters to functions
 def toFunction(callByName: => Int): () => Int = callByName _
 ```
 
+### Option   
+Option  
+Represents optional values. Instances of Option are either an instance of scala.Some or the object None.  
+
+The most idiomatic way to use an scala.Option instance is to treat it as a collection or monad and use map,flatMap, filter, or foreach:  
+
+
+Companion object Option  
+sealed abstract class Option[+A] extends Product with Serializable  
+
+
+
+
+
+### orElse  
+
+Chaining Options with orElse  
+A simple but handy use for Option is to select the first valid option from a selection of possible choices. 
+
+Sound vague? Well it is because it can be used in many different situations. The one presented here is: the program needs a directory that can be set by the user either as a system variable, and environment variable or the default value. The java code is a nightmare of if (xxx == null) statements. The Scala code is beautiful.  
+
+```scala
+scala> val propsTemplates = Option(System getProperty "MVN_CREATOR_TEMPLATES")
+propsTemplates: Option[java.lang.String] = None
+scala> val envTemplates = Option(System getenv "MVN_CREATOR_TEMPLATES")
+envTemplates: Option[java.lang.String] = None
+scala> val defaultHome = Some(System getProperty "user.home")
+defaultHome: Some[java.lang.String] = Some(/Users/jeichar)
+/* 
+chain the different options together in order of priority and get the value
+I am taking a small liberty here because I am assuming that user.home is always available
+*/
+scala> propsTemplates.orElse(envTemplates).orElse(defaultHome).get
+res0: java.lang.String = /Users/jeichar
+// alternative form:
+scala> propsTemplates orElse envTemplates orElse defaultHome get
+res1: java.lang.String = /Users/jeichar
+```
+
+
+### Sealed Classes
+
+A sealed class may not be directly inherited, except if the inheriting template is defined in the same source file as the inherited class. However, subclasses of a sealed class can inherited anywhere.
+
+Sealed classes are defined using the sealed modifier.
+
+If the selector of a pattern match is an instance of a sealed class, the compilation of pattern matching can emit warnings which diagnose that a given set of patterns is not exhaustive, i.e. that there is a possibility of a MatchErrorbeing raised at run-time.
+
+When applied to the selector of a match expression, the @unchecked annotation suppresses any warnings about non-exhaustive pattern matches which would otherwise be emitted. For instance, no warnings would be produced for the method definition below.
+
+```scala
+def f(x: Option[Int]) = (x: @unchecked) match {
+  case Some(y) => y
+}
+```
+Without the @unchecked annotation, a Scala compiler could infer that the pattern match is non-exhaustive, and could produce awarning because Option is a sealed class.
 
 
 ## scala symbols  
