@@ -246,6 +246,27 @@ Commonly Used Types
 
 Predef provides type aliases for types which are commonly used, such as the immutable collection types scala.collection.immutable.Map, scala.collection.immutable.Set, and the scala.collection.immutable.List constructors (scala.collection.immutable.:: and scala.collection.immutable.Nil).  
 
+
+//--------------------------------
+@Inject()   ----scala Dependency Injection  
+If you have a component, such as a controller, and it requires some other components as dependencies, then this can be declared using the @Inject annotation. The @Inject annotation can be used on fields or on constructors. We recommend that you use it on constructors, for example:
+
+```scala
+import javax.inject._
+import play.api.libs.ws._
+
+class MyComponent @Inject() (ws: WSClient) {
+  // ...
+}
+``` 
+
+Note that the @Inject annotation must come after the class name but before the constructor parameters, and must have parentheses.
+
+Also, Guice does come with several other types of injections, but constructor injection is generally the most clear, concise, and testable in Scala, so we recommend using it.
+
+Guice is able to automatically instantiate any class with an @Inject on its constructor without having to explicitly bind it. This feature is called just in time bindings is described in more detail in the Guice documentation. If you need to do something more sophisticated you can declare a custom binding as described below.
+
+
 //--------------------------------  
 Done(Akka)    
 
@@ -278,10 +299,32 @@ case object Done extends Done {
 ```
 
 
+
+
+//--------------------------------
+actor  
+In the actor model – as conceived in 1973 by Carl Hewitt et al. – actors are “fundamental units of computation that embody processing, storage and communication”.   
+
+In a nutshell, 
+communication means asynchronous messaging,   
+storage means that actors can have state and   
+processing simply means that actors can handle messages, which is also known as behavior.   
+
+
+an Akka actor is made up of several collaborating components. 
+The ActorRef represents the logical address of an actor and enables us to asynchronously send messages to the actor in a fire-and-forget manner.  
+The dispatcher – by default there is one per actor system – takes care of enqueuing messages into the mailbox of an actor as well as scheduling the mailbox for dequeuing one or more messages – but only one at a time – to be processed by the actor. 
+Last but not least, the Actor – typically the only API we have to implement – encapsulates state and behavior.  
+
+//see pictures here  
+https://blog.codecentric.de/en/2015/08/introduction-to-akka-actors/
+
+
 //--------------------------------  
 akka.actor.ActorSystem
 
 An actor system is a hierarchical group of actors which share common configuration, e.g. dispatchers, deployments, remote capabilities and addresses. It is also the entry point for creating or looking up actors.
+
 
 
 ```scala
