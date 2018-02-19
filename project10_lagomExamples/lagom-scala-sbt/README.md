@@ -61,6 +61,7 @@ object HelloCommand {
 State in the system 
 
 ```scala
+// the state for the {@link HelloWorld} entity  
 case class WorldState (message: String, timestamp: String) extends CompressedJsonable {
 	require(message != null, "message must not null")
 	require(timestamp != null, "timestamp must not be null")
@@ -74,15 +75,20 @@ put command, event and state together
 class HelloWorld extends PersistentEntity[HelloCommand, HelloEvent, WorldState] {
 
 	def initialBehavior(sanpshotState: Optional[WorldState]): Behavior = {
-		var b: BehaviorBuilder = newBehaviorBuilder(snapshotState.orElse(new WorldState("hello", LocalDateTime.now.toString)))
+		var b: BehaviorBuilder = newBehaviorBuilder(snapshotState.orElse(new WorldState("hello", LocalDateTime.now.toString)))  // link state
 
 		import scala.compat.java8.FunctionConverters._
 
-		b.setCommandHandler[Done, UserGreetingMessage](classOf[HelloCommand.UseGreetingMessage],
+		b.setCommandHandler[Done, UserGreetingMessage](classOf[HelloCommand.UseGreetingMessage],                                // link command  
 			asJavaBiFunction((cmd, ctx) => ctx.thenPresist[HelloEvent](
-				GreetingMessageChanged(cmd.message), asJavaConsumer((event: HelloEvent) => ctx.reply(Done.getInstance()))
+				GreetingMessageChanged(cmd.message),                                                                            // message queue?
+				asJavaConsumer((event: HelloEvent) => ctx.reply(Done.getInstance()))                                            // consumer 
 
 				)))
+
+        // event handler for the GreetingMessageChanged event  
+		b.setEventHandler[HelloEvent.GreetingMessageChanged](...)                                                               // 
+		//...
 
 	}
 
@@ -143,6 +149,10 @@ Class PersistentEntity.Behavior
 
 Behavior consists of current state and functions to process incoming commands and persisted events. Behavior is an immutable class. Use the mutable BehaviorBuilder for defining command and event handlers.
 
+commandHandlers  
+```scala
+public scala.collection.immutable.Map<Class<? extends Command>,java.util.function.BiFunction<? extends Command,PersistentEntity.CommandContext<Object>,PersistentEntity.Persist<? extends Event>>> commandHandlers()
+```
 
 //--------------------------------
 newBehaviorBuilder(lagom)  
@@ -173,6 +183,49 @@ Command - the super class/interface of the commands
 Event - the super class/interface of the events  
 State - the class of the state  
 
+
+
+//--------------------------------  
+
+asJavaFunction  
+asJavaBiFunction
+asJavaConsumer  
+asJavaBiConsumer  
+
+asJavaFunction  
+```scala  
+implicit def asJavaFunction[T, R](sFun: T => R): java.util.function.Function[T, R] =
+    new java.util.function.Function[T, R] {
+      override def apply(t: T): R = sFun(t)
+    }
+```
+
+asJavaBiFunction  
+```scala
+  implicit def asJavaBiFunction[T, U, R](sFun: (T, U) => R): java.util.function.BiFunction[T, U, R] =
+    new java.util.function.BiFunction[T, U, R] {
+      override def apply(t: T, u: U): R = sFun(t, u)
+    }
+```
+
+
+asJavaConsumer
+```scala
+  implicit def asJavaConsumer[T](sFun: T => Unit): java.util.function.Consumer[T] =
+    new java.util.function.Consumer[T] {
+      override def accept(t: T): Unit = sFun(t)
+    }
+```
+
+
+asJavaBiConsumer
+```scala
+  implicit def asJavaBiConsumer[T, U](sFun: (T, U) => Unit): java.util.function.BiConsumer[T, U] =
+    new java.util.function.BiConsumer[T, U] {
+      override def accept(t: T, u: U): Unit = sFun(t, u)
+    }
+```
+
 //--------------------------------  
 Descriptor(lagom)  
 
@@ -200,7 +253,6 @@ sealed abstract class Done extends Serializable
 Typically used together with Future to signal completion but there is no actual value completed. More clearly signals intent than Unit and is available both from Scala and Java (which Unit is not).
 
 
-
 ```scala
 // done source code
 
@@ -226,8 +278,32 @@ case object Done extends Done {
 ```
 
 
+//--------------------------------  
+akka.actor.ActorSystem
+
+An actor system is a hierarchical group of actors which share common configuration, e.g. dispatchers, deployments, remote capabilities and addresses. It is also the entry point for creating or looking up actors.
+
+
+```scala
+// Java or Scala
+system.actorOf(props, "name")
+system.actorOf(props)
+
+// Scala
+system.actorOf(Props[MyActor], "name")
+system.actorOf(Props(classOf[MyActor], arg1, arg2), "name")
+
+// Java
+system.actorOf(Props.create(MyActor.class), "name");
+system.actorOf(Props.create(MyActor.class, arg1, arg2), "name");
+```
+
+
+
+
 ##  create a lagom project using scala  
 https://developer.lightbend.com/start/?group=lagom&project=lagom-scala-sbt  
+
 
 
 
@@ -244,6 +320,12 @@ case class GreetingMessage(message: String) {
 
 //--------------------------------
 Model your complex domain data for scale and simplicity with CQRS and Event Sourcing
+
+
+//--------------------------------  
+LAGOM: FIRST IMPRESSIONS AND INITIAL COMPARISON TO SPRING CLOUD  
+https://ordina-jworks.github.io/microservices/2016/04/22/Lagom-First-Impressions-and-Initial-Comparison-to-Spring-Cloud.html
+
 
 
 //--------------------------------
