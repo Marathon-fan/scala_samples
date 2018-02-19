@@ -166,7 +166,8 @@ Scala allows to mix in a trait (creating an anonymous type) when creating a new 
 
 ### 6) case classes  
 Case classes are regular classes which export their constructor parameters and which provide a recursive decomposition mechanism via pattern matching.  
-case classes are used to conveniently store and match on the contents of a class. You can construct them without using new.
+Case classes are good for modeling immutable data.  
+case classes are used to conveniently store and match on the contents of a class. You can construct them without using new.(This is because case classes have an apply method by default which takes care of object construction.)
 ```scala  
 scala> case class Calculator(brand: String, model: String)
 defined class Calculator
@@ -592,12 +593,149 @@ res12: Class[_ <: List[Int]] = class scala.collection.immutable.$colon$colon
 
 ```
 
+### ->  and =>  
+//--------------------------------  
+->  
+
+-> is used to couple keys and values for a map. So:  
+```scala
+val m = Map(1 -> "one", 2 -> "two", 3 -> "three")
+```
+will map the first 3 positive integers into text equivalents (that is, m(1) will be "one", etc.). You could also write it as  
+```scala
+val m = Map((1,"one"), (2,"two"), (3,"three"))
+```
+but the first way looks nicer, which is why it's provided as an alternative.
+
+
+-> is not scala syntax, it is a method of the class ArrowAssoc. When you write "foo" -> "bar", the compiler inserts a implicit conversion from "foo" to ArrowAssoc instance so that the -> method can be found.
+```scala
+package scala
+object Predef {
+   class ArrowAssoc[A](x: A) {
+       def -> [B](y: B): Tuple2[A, B] = Tuple2(x, y)
+      }
+      implicit def any2ArrowAssoc[A](x: A): ArrowAssoc[A] =
+        new ArrowAssoc(x)
+      ...
+}
+```
+google "“scala rich wrappers” to know more.
+
+//--------------------------------  
+=>(right arrow/fat arrow)    
+
+=>  // Used for function types, function literals and import renaming
+right arrow => which separates the function’s argument list from its body. 
 
 
 
+### match expression  
+Pattern matching is a mechanism for checking a value against a pattern.   
 
-## play_framework    
 
+### def  
+A Scala function declaration has the following form −
+```scala
+
+def functionName ([list of parameters]) : [return type]
+```
+Methods are implicitly declared abstract if you don’t use the equals sign and the method body.
+
+Function Definitions
+A Scala function definition has the following form −
+
+Syntax
+```scala
+def functionName ([list of parameters]) : [return type] = {
+   function body
+   return [expr]
+}
+```
+
+### _
+
+Existential types
+```scala
+def foo(l: List[Option[_]]) = ...
+```
+
+Higher kinded type parameters
+```scala
+case class A[K[_],T](a: K[T])
+```
+
+Ignored variables
+```scala
+val _ = 5
+```
+
+Ignored parameters
+```scala
+List(1, 2, 3) foreach { _ => println("Hi") }
+
+Ignored names of self types
+```scala
+trait MySeq { _: Seq[_] => }
+```
+
+Wildcard patterns
+```scala
+Some(5) match { case Some(_) => println("Yes") }
+```
+
+Wildcard imports
+
+```scala
+import java.util._
+```
+
+Hiding imports
+```scala
+import java.util.{ArrayList => _, _}
+```
+
+Joining letters to punctuation
+```scala
+def bang_!(x: Int) = 5
+```
+
+Assignment operators
+```scala
+def foo_=(x: Int) { ... }
+```
+
+Placeholder syntax
+```scala
+List(1, 2, 3) map (_ + 2)
+```
+
+Partially applied functions
+```scala
+List(1, 2, 3) foreach println _
+```
+
+Converting call-by-name parameters to functions
+```scala
+def toFunction(callByName: => Int): () => Int = callByName _
+```
+
+
+
+## scala symbols  
+https://docs.scala-lang.org/tutorials/FAQ/finding-symbols.html
+
+
+
+## Akka(focuses on actor-based concurrency and other concurrency models)      
+
+Akka is a free and open-source toolkit and runtime simplifying the construction of concurrent and distributed applications on the JVM. Akka supports multiple programming models for concurrency, but it emphasizes actor-based concurrency, with inspiration drawn from Erlang.   
+
+An actor implementation, written by Philipp Haller, was released in July 2006 as part of Scala 2.1.7.[4] By 2008 Scala was attracting attention for use in complex server applications, but concurrency was still typically achieved by creating threads that shared memory and synchronized when necessary using locks. Aware of the difficulties with that approach and inspired by the Erlang programming language's library support for writing highly concurrent, event-driven applications, Jonas Bonér created Akka to bring similar capabilities to Scala and Java. Bonér began working on Akka in early 2009[5] and wrote up his vision for it in June of that year.[6] The first public release was Akka 0.5,[7] announced in January 2010.[8] Akka is now part of the Lightbend Platform together with the Play framework and the Scala programming language.
+
+
+## play_framework(web application framework that follows MVC)      
+Play Framework is an open-source web application framework, written in Scala and also usable from other programming languages that are compiled to Bytecode, e.g. Java, which follows the model–view–controller architectural pattern.  
 
 play project folders  
 1) app
@@ -659,6 +797,21 @@ Templating Engine: Play!
 reutilize views: Play!  
 Server Container: Play!  
 management of dependencies: SBT   -->
+
+## Lagom framework(Opinionated microservice framework built on Akka and Play)  
+an open source framework for building reactive microservice systems in Java or Scala. Lagom builds on Akka and Play, proven technologies that are in production in some of the most demanding applications today.
+
+Lagom's integrated development environment allows you to focus on solving business problems instead of wiring services together. A single command builds the project, starts supporting components and your microservices, as well as the Lagom infrastructure. The build hot-reloads when it detects changes to source code.
+
+Right-sized services created with Lagom enable:
+
+better defined development responsibilities—to increase agility  
+more frequent releases with less risk—to improve time to market  
+systems with reactive qualities: responsiveness, resilience, scalability, and elasticticity—to make best use of modern computing environments and meet demanding user expectations  
+
+### message-driven system  
+events, commands, and states  
+
 
 ## scala tools  
 ### twirl  
@@ -729,8 +882,7 @@ is that the block in { ... } is parsed as a refinement of the type
 
 
 
-
 ## Reference  
 https://www.scala-lang.org/old/node/104.html  
 https://www.cis.upenn.edu/~matuszek/Concise%20Guides/Concise%20Scala.html  
-
+https://stackoverflow.com/questions/4980515/scala-maps-operator  
