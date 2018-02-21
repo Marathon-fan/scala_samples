@@ -366,6 +366,44 @@ Model your complex domain data for scale and simplicity with CQRS and Event Sour
 
 
 //--------------------------------  
+LAGOM: Managing Data Persistence
+
+Each service has its own data. 
+
+
+Event Sourcing - storing deltas  
+1 every state change is materialized in an event  
+2 all events are stored in an Event Log  
+3 current state is constructed by replaying all events  
+
+Event Sourcing - storing deltas  
+
+Event sourcing - benefits  
+1 no object-relational impedance mismatch  
+2 bullet-proof auditing and historical tracing  
+3 support future ways of looking at data  
+4 performance and scalability  
+5 testability  
+
+Event sourcing - rolling snapshots  
+
+
+Persistent Entity  
+
+
+CQRS - benefits  
+// https://www.lagomframework.com/  
+1 separation(between the concerns of the writing and reading side)  
+an entity can focuse on updating command  
+the reading side can be optimized for various quries and recording jobs  
+
+2 scalability  
+because of separation, the read side can be scaled out to many nodes independently of the write side   
+it is often on the read side you need this massive scalability  
+
+
+
+//--------------------------------  
 LAGOM: FIRST IMPRESSIONS AND INITIAL COMPARISON TO SPRING CLOUD  
 https://ordina-jworks.github.io/microservices/2016/04/22/Lagom-First-Impressions-and-Initial-Comparison-to-Spring-Cloud.html
 
@@ -375,8 +413,11 @@ https://ordina-jworks.github.io/microservices/2016/04/22/Lagom-First-Impressions
 CQRS  
 
 CQRS stands for Command Query Responsibility Segregation.  
-It's a pattern that I first heard described by Greg Young. At its heart is the notion that you can use a different model to update information than the model you use to read information. For some situations, this separation can be valuable, but beware that for most systems CQRS adds risky complexity.
+It's a pattern that I first heard described by Greg Young. At its heart is the notion that you can use a different model to update information than the model you use to read information. For some situations, this separation can be valuable, but beware that for most systems CQRS adds risky complexity.  
 
+Command Query Responsibility Segregation (CQRS) is an architectural pattern that separates reading and writing into two different models. This means that every method should either be a Command that performs an action or a Query that returns data.  
+
+https://msdn.microsoft.com/en-us/library/jj591573.aspx  
 https://martinfowler.com/bliki/CQRS.html
 
 
