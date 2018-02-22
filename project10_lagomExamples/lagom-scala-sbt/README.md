@@ -408,6 +408,7 @@ LAGOM: FIRST IMPRESSIONS AND INITIAL COMPARISON TO SPRING CLOUD
 https://ordina-jworks.github.io/microservices/2016/04/22/Lagom-First-Impressions-and-Initial-Comparison-to-Spring-Cloud.html
 
 
+github.com/lagom/lagom
 
 //--------------------------------
 CQRS  
@@ -426,5 +427,10 @@ Event Sourcing
 
 Event Sourcing pattern defines an approach to handling operations on data that's driven by a sequence of events, each of which is recorded in an append-only store. Application code sends a series of events that imperatively describe each action that has occurred on the data to the event store, where they're persisted. Each event represents a set of changes to the data (such as AddedItemToOrder).
 
+Underlying storage of event sourcing  
+Events are not complex data structures; typically, they have some standard metadata that includes the ID of the aggregate instance they are associated with and a version number, and a payload with the details of the event itself. You do not need to use a relational database to store your events; you could use a NoSQL store, a document database, or a file system.
+
+
+https://msdn.microsoft.com/en-us/library/jj591559.aspx
 http://microservices.io/patterns/data/event-sourcing.html  
 https://docs.microsoft.com/en-us/azure/architecture/patterns/event-sourcing  
