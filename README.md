@@ -694,7 +694,7 @@ res1: java.lang.String = /Users/jeichar
 ```
 
 
-### scala symbol :+
+### scala symbol :+  
 :+ is a method on whatever type is returned by someVariable.next().  
 Presumably it's scala.Array.:+  
 ```
@@ -724,6 +724,9 @@ val stringList = fooList.foldLeft(List[String]()) { (z, f) =>
 println(stringList)
 
 ```
+
+### scala REPL  
+Technically speaking, the scala program is not an interpreter. Behind the scenes, your input is quickly compiled into bytecode, and the bytecode is executed by the Java virtual machine. For that reason, most Scala programmers prefer to call it “the REPL”.
 
 
 
