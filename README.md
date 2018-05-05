@@ -816,6 +816,11 @@ Converting call-by-name parameters to functions
 def toFunction(callByName: => Int): () => Int = callByName _
 ```
 
+### apply    
+
+
+So apply method is just a handy way of closing the gap between functions and objects in Scala.
+
 
 
 ## scala symbols  

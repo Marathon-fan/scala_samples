@@ -8,6 +8,8 @@ implicit def function2ActionListener(f: ActionEvent => Unit) =
 ////////////////
 1 "implicit conversion" is a function      
 2 in last example, it takes an function as the input, and returns an object with a function inside
+                   it converts a function to an object                   
+
 
 ////////////////
 

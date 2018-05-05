@@ -31,22 +31,76 @@ JSON.parseFull(result) match {
 
 
 
+//---error info circe 
+
+Well, specifically a failed downField would indicate a missing field.
+
+//---
+
+scala TupleDecoders  !!!
+
+//---
+Implicit JSON conversion with Scala
+
+http://lollyrock.com/articles/scala-implicit-conversion/
+
+//---
+
+import cats.instances.either._
+import cats.syntax.cartesian._
+import io.circe._, io.circe.parser._, io.circe.syntax._
+
+case class NestedClass(id: Long, displayName: String, nesting: Option[NestedClass])
+
+object NestedClass {
+  implicit val nestedClassDecoder: Decoder[NestedClass] = Decoder.instance { c =>
+    (
+      c.get[Long]("id") |@|
+      c.get[String]("display_name") |@|
+      c.get[Option[NestedClass]]("nesting")
+    ).map(NestedClass.apply)
+  }
+
+  implicit val nestedClassEncoder: Encoder[NestedClass] = Encoder.instance {
+    case NestedClass(i, d, n) => Json.obj(
+      "id"           -> i.asJson,
+      "display_name" -> d.asJson,
+      "nesting"      -> n.asJson
+    )
+  }
+
+      val testString =
+      """
+        |{
+        |  "id": 10000,
+        |  "display_name": "foobar",
+        |  "nesting": {
+        |    "id": 10001,
+        |    "display_name": "quux"
+        |  }
+        |}
+      """.stripMargin
 
 
+
+}
+
+/////////////////////////////////////////
+case class Foo(firstName: String, lastName: String, age: Int, stuff: List[Boolean])
+
+
+
+
+
+////////////////////////////////////////
 
 
 //-------
-你这个没有我的json复杂 哈哈哈
- Feng scala
 多层嵌套  数组 map 无非就这些
- John Learner
 是那个body，我感觉比较难解出来
- Feng scala
 先转string 再解析
- Feng scala
-你可以单独拿那个写个demo解析出来
-
-一样的嘛  跟我的case  map是同理
+可以单独拿那个写个demo解析出来
+跟我的case  map是同理
 
 
 
