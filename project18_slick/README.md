@@ -212,8 +212,59 @@ meetings.first                meeting or NoSuchElementException
 
 meetings.firstOption          Option[Meeting]
 
-
 ## level 3: Advanced Queries   
+
+------------------------------------------inner join  
+Slick
+```
+meeting.innerJoin(documents).on {
+	case (meeting, document) => 
+	   meeting.id === document.meetingId
+}.where {
+	case (meeting, document) =>
+	meeting.id === 1L
+}.list
+``` 
+
+
+SQL
+```
+select * from meeting inner join documents
+    on meeting.id = documents.meeting_id
+    where meeting.id = 1
+```
+
+Result
+```
+List[(Meeting, Document)]
+```
+
+------------------------------------------    
+
+Slick
+```
+meeting.innerJoin(documents).on {
+	...
+}.where {
+	...
+}.mapResult {
+	case (meeting, document) =>
+	  meeting.documents = Some(Set(document))
+	  meeting
+}.list.reduceOption {
+	(previousMeeting, meeting) =>
+	   previousMeeting.documents = 
+	      Some(previousMeeting.documents.get ++ meeting.document.get)
+	   previousMeeting 
+
+}
+``` 
+
+Result
+```
+Option[Meeting]
+```
+
 
 
 
