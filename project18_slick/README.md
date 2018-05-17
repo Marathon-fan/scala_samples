@@ -13,6 +13,41 @@ Option(Anorm)    orElse(Hibernate)   orElse(Slick)
 
 ```
 
+
+## slick real example     
+
+
+```scala
+    val dbSFTestConnection = Connections.getSaleForceSchemaDBObject().db
+
+    val assetAndLiabilityQuery = AssetAndLiabilities.filter(al => al.opportunity_C === request.body.Opportunity__c_al).map(
+      x => (x.account_C, x.accountName_C, x.address_C, x.recordtypeid, x.state_C))
+
+    val result_assetAndLiabilityQuery = dbSFTestConnection.run(assetAndLiabilityQuery.result)
+    import scala.concurrent.ExecutionContext.Implicits.global
+    import scala.concurrent.duration._
+    Await.result(result_assetAndLiabilityQuery, 10.seconds)
+    println("--==--==--=--==--==-==--==--==--==begin to print result_assetAndLiabilityQuery")
+    result_assetAndLiabilityQuery.map { data => {
+      val dataList = data.toList
+      dataList.map(item => {
+        val output = item match{
+          case (v1, v2, v3, v4, v5) => {
+            println(v1)
+            println(v2)
+            println(v3)
+            println(v4)
+            println(v5)
+            println("---------------")
+          }
+        }
+      })
+     }
+    }
+
+```
+
+
 ## Build queries with Scala - lifted embedding     
 
 
@@ -41,6 +76,9 @@ Database.forURL(
 
 
 ```
+
+
+
 
 ## sample databases    
 
