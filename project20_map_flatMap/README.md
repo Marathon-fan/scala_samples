@@ -22,7 +22,7 @@ res1: List[Option[Int]] = List(None, None, Some(3), Some(4), Some(5))
 ```
 
 ## flatMap  
-flatMap works applying a function that returns a sequence for each element in the list, and flattening the results into the original list. 
+flatMap works applying a function that returns a sequence for each element in the list, and flattening the results into the original list(a plain list without nested structure). 
 ```scala
 scala> l.map(x => f(x))
 res1: List[Option[Int]] = List(None, None, Some(3), Some(4), Some(5))
