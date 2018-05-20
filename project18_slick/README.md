@@ -13,8 +13,113 @@ Option(Anorm)    orElse(Hibernate)   orElse(Slick)
 
 ```
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////    
+## defining our schema    
+
+the following class represents a row in our single example table:
+```
+final case class Message(
+	sender: String, 
+	content: String,
+	id: Long = 0L
+)
+```
+
+a Table object, which corresponds to our database table and tells Slick how to map back and forth between database data and instances of our case class:
+The * method provides a default projec􏰃on that maps between columns in the table and instances of our case class. Slick’s mapTo macro creates a two-way mapping between the three columns and the three fields in Message.
+```
+final class MessageTable(tag: Tag) extends Table[Message](tag, "message") {
+def id = column[Long]("id", O.PrimaryKey, O.AutoInc) 
+def sender = column[String]("sender")
+def content = column[String]("content")
+def * = (sender, content, id).mapTo[Message] }
+```
+
+Example Queries
+```
+ val messages = TableQuery[MessageTable]
+// messages: slick.lifted.TableQuery[MessageTable] = Rep(TableExpansion)
+```
+
+```
+val halSays = messages.filter(_.sender === "HAL")
+// halSays: slick.lifted.Query[MessageTable,MessageTable#TableElementType,Seq] = Rep(Filter @1367206987)
+```
+
+```
+messages.schema.createStatements.mkString
+// res0: String = create table "message" ("sender" VARCHAR NOT NULL,"content" VARCHAR NOT NULL,"id" BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT)
+```
+
+```
+val action: DBIO[Unit] = messages.schema.create
+// action: slick.jdbc.H2Profile.api.DBIO[Unit] = slick.jdbc.
+JdbcActionComponent$SchemaActionExtensionMethodsImpl$$anon$5@799c6fcf
+```
+
+
+```
+ import scala.concurrent.Future
+ val future: Future[Unit] = db.run(action)
+// future: scala.concurrent.Future[Unit] = Future(<not completed>)
+```
+
+```
+ import scala.concurrent.Await 
+ import scala.concurrent.duration._
+ val result = Await.result(future, 2.seconds) 
+ // result: Unit = ()
+```
+
+
+Selec􏰀ng Data
+```
+val messagesAction: DBIO[Seq[Message]] = messages.result
+
+val messagesFuture: Future[Seq[Message]] = db.run(messagesAction)
+
+val messagesResults = Await.result(messagesFuture, 2.seconds)
+
+```
+
+Introduce a helper method called exec to make the examples easier to read:
+```
+def exec[T](action: DBIO[T]): T = Await.result(db.run(action), 2.seconds)
+// exec: [T](action: slick.jdbc.H2Profile.api.DBIO[T])T
+```
+
+```
+messages.filter(_.sender === "HAL").result.statements.mkString
+// res3: String = select "sender", "content", "id" from "message" where "sender " = 'HAL'
+```
+
+```
+exec(messages.filter(_.sender === "HAL").result)
+// res4: Seq[MessageTable#TableElementType] = Vector(Message(HAL,Affirmative,
+Dave. I read you.,2), Message(HAL,I'm sorry, Dave. I'm afraid I can't do that.,4))
+```
+
+///////////////////////////////////////////////////  
+Combining Queries with For Comprehensions
+
+
+Remember that for comprehensions are aliases for chains of method calls. 
+```
+val halSays2 = for {
+message <- messages if message.sender === "HAL"
+} yield message
+// halSays2: slick.lifted.Query[MessageTable,Message,Seq] = Rep(Bind)
+```
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 ## slick real example     
+
+
+
 
 
 ```scala
