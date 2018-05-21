@@ -14,6 +14,17 @@ Option(Anorm)    orElse(Hibernate)   orElse(Slick)
 ```
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////    
+
+1 queries: which compose using combinators suchas map,flatMap,and filter;
+
+2 ac􏰂tions: the things you can run against a database, which themselves compose;
+and
+
+3 futures: which are the result of actions, and also support a set of combinators.
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////    
+
+
 ## defining our schema    
 
 the following class represents a row in our single example table:
