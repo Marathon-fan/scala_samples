@@ -283,6 +283,21 @@ found it
 
 ```
 
+## 11 Sequence patterns, ::style  
+
+```
+def process(x: Any) = 
+x match {
+    case a::b::c::rest => println("at least 3")
+    case a::Nil => println("just 1")
+    case head::tail => println("at least 1")
+    case Nil => println("empty")
+}
+
+```
+
+
+
 
 
 
