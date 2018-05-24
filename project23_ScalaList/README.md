@@ -67,5 +67,50 @@ res14: Int = 4
 
  ``` 
 
+constructing lists
+```
+scala> 1 :: 2 :: 3 :: Nil
+res4: List[Int] = List(1, 2, 3)
+
+scala>   (1::(2::(3 :: Nil)))
+res6: List[Int] = List(1, 2, 3)
+
+
+
+```
+
+basic operations on lists
+```
+head
+
+tail
+isEmpty
+Nil
+
+Nil.isEmpty
+
+scala> 1::Nil
+res9: List[Int] = List(1)
+
+scala> res9.isEmpty
+res10: Boolean = false
+
+scala> val fruit=List("apples", "bananas", "pears")
+fruit: List[String] = List(apples, bananas, pears)
+
+scala> val (head :: tail) = fruit
+head: String = apples
+tail: List[String] = List(bananas, pears)
+
+scala> val (head::tail) = res9
+head: Int = 1
+tail: List[Int] = List()
+
+
+scala> res9.tail
+res11: List[Int] = List()
+
+
+```
 
 
