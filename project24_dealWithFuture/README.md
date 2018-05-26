@@ -3,12 +3,12 @@
 
 
 A possible approach is awaiting the result, but it is not good to use in a prod application.
-```
+```scala
 val myFutureResult : Future[T] = Future {...}
 val myResult : T = Await.result(myFutureResult, secondsToWait seconds)  
 ```
 
-```
+```scala
     var brokerID = result_opportunityQuery.map{
       data => {
         val dataList = data.toList
