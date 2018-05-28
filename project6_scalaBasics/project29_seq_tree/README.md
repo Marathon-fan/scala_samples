@@ -2,7 +2,7 @@
 # seq tree
 
 
-LinearSeq: efficient head and tail. access to a normal element uses linear time  
+LinearSeq: efficient head and tail. access to a normal element uses linear time(like singly/doubly-linked list)
 
 example: List and Stream  
 
