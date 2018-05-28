@@ -67,6 +67,16 @@ s(0) = "Goodbye"
 
 ////////////////////////////////////////////////////
 
+You can use :+ to append element to array and +: to prepend it:
+
+0 +: array :+ 4
+should produce:
+res3: Array[Int] = Array(0, 1, 2, 3, 4)
+
+
+It's the same as with any other implementation of Seq.
+
+
 
 
 ////////////////////////////////////////////////////Exercise
