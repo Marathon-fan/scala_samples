@@ -176,6 +176,32 @@ def func(input: Array[Int]) = {
 ```
 
 
+Q5:
+How do you compute the average of an Array[Double]?
+```
+def func(array:Array[Double]) = {
+	array.sum / array.length
+}
+
+scala> func(
+     | {
+     | for (i <- 1 until 10 ) yield scala.util.Random.nextDouble
+     | }.toArray
+     | )
+res2: Double = 0.5652085731804668
+
+```
+
+
+Q6:
+6. How do you rearrange the elements of an Array[Int] so that they appear in
+reverse sorted order? How do you do the same with an ArrayBuffer[Int]?
+
+
+
+
+////////////////////////////////////////////////////
+
 
 
 
@@ -184,10 +210,28 @@ def func(input: Array[Int]) = {
 ////////////////////////////////////////////////////
 
 
-////////////////////////////////////////////////////
+
+
 
 
 ////////////////////////////////////////////////////
+
+
+
+
+
+
+////////////////////////////////////////////////////
+
+
+
+
+
+
+////////////////////////////////////////////////////
+
+
+
 
 
 
