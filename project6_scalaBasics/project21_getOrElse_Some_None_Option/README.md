@@ -29,4 +29,11 @@ x: Int = 0
 
 
 
+```scala
+  val test1:Option[String] = Some("Hello, String")
+  val test2:Option[String] = None
+  println(test1.getOrElse("65"))
+  println(test2.getOrElse("65"))
+
+```
 
