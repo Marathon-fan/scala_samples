@@ -1,0 +1,11 @@
+{"userUUID":"1601CC5D-8450-44DE-BC5F-9A3796806C55","applicationUUID": "6F3B4FA0-D1AB-4A38-BFDF-F540018BD30B","tolerance": 0,"givenName": "BARRY",
+  "givenNameOther": "JAMES",
+  "familyName": "OVER-ALL",
+  "gender": "Male",
+  "addresses": [
+    {
+      "relationship": "Current",
+      "address": "100 ARTHUR ST NORTH SYDNEY NSW 2060"
+    }
+  ]
+}
