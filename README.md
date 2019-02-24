@@ -59,6 +59,14 @@ $> sbt
 $> run  
 
 
+###  _._2
+
+```scala
+collection.map(_._2) emits a second component of the tuple. Example from pure Scala (Spark RDDs work the same way):
+```
+
+
+
 ### 1) object  
 In Scala, we cannot have static members. Instead, Scala has singleton objects. A singleton is a class that can have only one instance, i.e., Object. You create singleton using the keyword object instead of class keyword.  
 ```scala
